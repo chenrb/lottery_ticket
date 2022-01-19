@@ -2,17 +2,6 @@
 import random
 
 
-def random_balls(balls, choices):
-    ret = []
-    for n in range(choices):
-        random.shuffle(balls)
-        r = random.choice(balls)
-        ret.append(r)
-        balls.pop(balls.index(r))
-    ret.sort()
-    return ret
-
-
 def two_color_ball(bet=1):
     """
     双色球由红球和蓝球两部份组成，从33个红球号码(01~33)中选择6个，再从16个蓝球号码(01~16)中选择1个。
@@ -23,7 +12,7 @@ def two_color_ball(bet=1):
     print("双色球： ")
     for i in range(1, bet + 1):
         balls = [n for n in range(1, 34)]
-        red = random_balls(balls, 6)
+        red = random.sample(balls, 6)
         blue = random.randint(1, 16)
         print("{}:红: {: >2}, {: >2}, {: >2}, {: >2}, {: >2}, {: >2} -- 蓝：{: >2}".format(i, *red, blue))
 
@@ -38,8 +27,8 @@ def big_lotto(bet=1):
     for i in range(1, bet + 1):
         front_balls = [n for n in range(1, 36)]
         back_balls = [n for n in range(1, 13)]
-        front = random_balls(front_balls, 5)
-        back = random_balls(back_balls, 2)
+        front = random.sample(front_balls, 5)
+        back = random.sample(back_balls, 2)
         print("{}:前区：{: >2}, {: >2}, {: >2}, {: >2}, {: >2} -- 后区：{: >2}, {: >2}".format(i, *front, *back))
 
 
